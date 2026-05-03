@@ -1,0 +1,7 @@
+{
+  "steps": [
+    {"agent": "planner"},
+    {"agent": "writer"},
+    {"agent": "validator"}
+  ]
+}
