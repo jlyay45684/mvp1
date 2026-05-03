@@ -1,0 +1,5 @@
+{
+  "name": "content_workflow",
+  "tools": ["echo"],
+  "prompt": "Generate a concise outline and draft"
+}
