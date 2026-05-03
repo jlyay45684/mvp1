@@ -1,0 +1,8 @@
+{
+  "name": "content-workflow",
+  "steps": [
+    {"agent": "planner"},
+    {"agent": "writer"},
+    {"agent": "validator"}
+  ]
+}
