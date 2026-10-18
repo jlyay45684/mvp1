@@ -1,0 +1,37 @@
+name: AQG v0.1.0 validation
+
+on:
+  push:
+    branches:
+      - test/aqg-v0.1.0-validation
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository without persisted credentials
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install application tests and public AQG release
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+          python -m pip install "git+https://github.com/jlyay45684/AGENT-QUALITY-GATE.git@v0.1.0"
+
+      - name: Run workflow tests
+        run: python -m pytest -q
+
+      - name: Validate AQG PASS, FAIL, and UNVERIFIED behavior
+        run: python scripts/validate_aqg.py --repo .

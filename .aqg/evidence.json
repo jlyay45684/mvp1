@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "claims": [
+    {
+      "id": "application-present",
+      "claim": "FastAPI 應用程式檔案存在且非空",
+      "type": "file_nonempty",
+      "target": "app.py",
+      "source": {
+        "kind": "file",
+        "path": "app.py"
+      }
+    },
+    {
+      "id": "workflow-parseable",
+      "claim": "工作流程定義是可解析的 JSON",
+      "type": "json_parseable",
+      "target": "workflow.json",
+      "source": {
+        "kind": "file",
+        "path": "workflow.json"
+      }
+    },
+    {
+      "id": "tests-pass",
+      "claim": "設定的測試命令已執行且成功",
+      "type": "test_success",
+      "source": {
+        "kind": "command",
+        "ref": "test:0"
+      }
+    }
+  ]
+}

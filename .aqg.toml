@@ -1,0 +1,22 @@
+# AGENT-QUALITY-GATE v0.1.0 驗收設定
+# 命令均為明確 argv 陣列，AQG 不會透過 shell 執行。
+version = 1
+
+[scan]
+include = ["app.py", "tests/**/*.py", "scripts/**/*.py"]
+exclude = ["**/__pycache__/**"]
+
+[commands]
+static = [["python", "-m", "compileall", "-q", "app.py", "tests", "scripts"]]
+tests = [["python", "-m", "pytest", "-q"]]
+
+[timeouts]
+static = 30
+test = 120
+
+[ahg]
+evidence_file = ".aqg/evidence.json"
+
+[report]
+json = ".aqg/reports/aqg-report.json"
+markdown = ".aqg/reports/aqg-report.md"
